@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "./bib_arqs.h"
+#include "bib_arqs.h"
 
 int tam_arq_texto(char *nome_arquivo)
 {
     int tamanho;
     FILE *arquivo;
-    if( !(arquivo = fopen(nome_arquivo,"w")) )
+    if( !(arquivo = fopen(nome_arquivo,"r")) )
     {
         printf("Erro! Impossivel abrir o arquivo!\n");
         exit(1);
@@ -18,4 +18,19 @@ int tam_arq_texto(char *nome_arquivo)
     fclose(arquivo);
 
     return tamanho;
+}
+
+void le_arq_texto(char *nome_arquivo, char *conteudo)
+{
+    int i=0;
+    FILE *arquivo;
+    if( !(arquivo = fopen(nome_arquivo,"r")) )
+    {
+        printf("Erro! Impossivel abrir o arquivo!\n");
+        exit(1);
+    }
+
+    while( (conteudo[i]=fgetc(arquivo))!= EOF )
+        i++;
+    conteudo[i] = '\0';
 }
