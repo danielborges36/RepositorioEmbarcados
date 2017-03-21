@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "bib_arqs.h"
 
 int tam_arq_texto(char *nome_arquivo)
@@ -14,7 +15,7 @@ int tam_arq_texto(char *nome_arquivo)
     // movimenta a posição corrente de leitura no arquivo para o seu fim
     fseek(arquivo, 0, SEEK_END);
     // pega a posição corrente de leitura no arquivo
-    tamanho = ftell(arquivo);
+    tamanho = ftell(arquivo)-5;
     fclose(arquivo);
 
     return tamanho;

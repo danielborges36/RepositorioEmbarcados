@@ -2,6 +2,8 @@
 #include <string.h>
 #include "bib_arqs.c"
 
+int strfind(char *string1, char *string2);
+
 int main(int argc, char **argv)
 {
     char *nome, *palavra;
@@ -15,10 +17,21 @@ int main(int argc, char **argv)
 
     for(i=0; i<tamanho; i++)
     {
-        if( !strcmp(palavra,conteudo) )
+        if( strfind(conteudo+i, palavra) )
             results++;
-        conteudo = conteudo+1;
     }
 
     printf("'%s' ocorre %d vezes no arquivo %s", palavra, results, nome);
+}
+
+int strfind(char *stringP, char *stringS)
+{
+    int i;
+
+    for (i=0; stringS[i]; i++)
+    {
+        if(stringP[i] != stringS[i])
+            return 0;
+    }
+    return 1;
 }
